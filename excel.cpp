@@ -16,7 +16,7 @@ int main()
     xlnt::workbook cursos;
     xlnt::workbook docentes;
     xlnt::workbook salas;
-    
+
     cursos.load("archivosExcel/Cursos.xlsx");
     docentes.load("archivosExcel/Docentes.xlsx");
     salas.load("archivosExcel/Salas.xlsx");
@@ -28,30 +28,30 @@ int main()
     cout << "El archivo cursos tiene " << contarFilas(cursos) << " filas. " << endl;
     cout << "El archivo docentes tiene " << contarFilas(docentes) << " filas. " << endl;
     cout << "El archivo salas tiene " << contarFilas(salas) << " filas. " << endl;
-    
+
     return 0;
 }
 
 int contarFilas(xlnt::workbook archivoExcel){
     auto hojaActiva = archivoExcel.active_sheet();
 
-    int contadorFilasHojaActiva = 1;
+    int contadorFilasHojaActiva = 0;
     for(auto fila : hojaActiva.rows(false))
         contadorFilasHojaActiva++;
-    
-    return contadorFilasHojaActiva;
+
+    return contadorFilasHojaActiva -1;
 }
 
 vector<vector<string>> llenarVector(xlnt::workbook cursos){
     auto hojaActiva = cursos.active_sheet();
-    
+
     vector<vector<string>> vectorHojaCompleta;
-    
+
     for(auto fila : hojaActiva.rows(false)){
         vector<string> vectorFilasIndividuales;
         for (auto celda : fila)
             vectorFilasIndividuales.push_back(celda.to_string());
-        
+
         vectorHojaCompleta.push_back(vectorFilasIndividuales);
     }
 
@@ -69,7 +69,7 @@ void mostrarCursosProfes(vector<vector<string>> vectorCursos){
     vector<string> vectorProfes;
 
     for(int i = 1; i < vectorCursos.size(); i++){
-            vectorProfes.push_back(vectorCursos[i][2]);     
+            vectorProfes.push_back(vectorCursos[i][2]);
     }
 
     int contadorRamosPorProfe;
@@ -80,7 +80,7 @@ void mostrarCursosProfes(vector<vector<string>> vectorCursos){
                 contadorRamosPorProfe++;
         }
 
-        cout << "El/la profesor/a " << vectorCursos[i][3] << " " 
+        cout << "El/la profesor/a " << vectorCursos[i][3] << " "
         << vectorCursos[i][4] << " tiene " << contadorRamosPorProfe << " ramos." << endl;
     }
 }
