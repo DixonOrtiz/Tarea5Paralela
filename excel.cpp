@@ -11,24 +11,30 @@ vector<vector<string>> llenarVector(xlnt::workbook);
 void mostrarCursosProfes(vector<vector<string>>);
 
 
-int main()
+int main(int argc, char** argv)
 {
-    xlnt::workbook cursos;
-    xlnt::workbook docentes;
-    xlnt::workbook salas;
+    if (argc==4){		
+        xlnt::workbook cursos;
+        xlnt::workbook docentes;
+        xlnt::workbook salas;
     
-    cursos.load("archivosExcel/Cursos.xlsx");
-    docentes.load("archivosExcel/Docentes.xlsx");
-    salas.load("archivosExcel/Salas.xlsx");
+        cursos.load(argv[1]);
+        docentes.load(argv[2]);
+        salas.load(argv[3]);
 
-    vector<vector<string>> vectorCursos;
-    vectorCursos = llenarVector(cursos);
-    mostrarCursosProfes(vectorCursos);
+        vector<vector<string>> vectorCursos;
+        vectorCursos = llenarVector(cursos);
+        mostrarCursosProfes(vectorCursos);
 
-    cout << "El archivo cursos tiene " << contarFilas(cursos) << " filas. " << endl;
-    cout << "El archivo docentes tiene " << contarFilas(docentes) << " filas. " << endl;
-    cout << "El archivo salas tiene " << contarFilas(salas) << " filas. " << endl;
-    
+        cout << "El archivo cursos tiene " << contarFilas(cursos) << " filas. " << endl;
+        cout << "El archivo docentes tiene " << contarFilas(docentes) << " filas. " << endl;
+        cout << "El archivo salas tiene " << contarFilas(salas) << " filas. " << endl;
+    }
+    else{
+
+        cout<<"Número Inválido de Argumentos"<<endl;
+        
+    }
     return 0;
 }
 
