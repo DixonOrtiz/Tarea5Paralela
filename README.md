@@ -2,7 +2,6 @@
 Tarea 5 ayudantia computacion paralela
 
 ### Instalación librería:
-* Item 1
 * $ git clone https://github.com/tfussell/xlnt.git
 * $ cd xlnt
 * $ cmake .
