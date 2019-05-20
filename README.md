@@ -1,7 +1,7 @@
 # Tarea5Paralela
 Tarea 5 ayudantia computacion paralela
 
-###Instalación librería:
+### Instalación librería:
 * Item 1
 * $ git clone https://github.com/tfussell/xlnt.git
 * $ cd xlnt
@@ -11,7 +11,7 @@ Tarea 5 ayudantia computacion paralela
 * $ sudo ldconfig
 * (Se reemplaza la carpeta xlnt que se subió vacía)
 
-###Compilación y ejecución:
+### Compilación y ejecución:
 
 * g++ excel.cpp -o tarea -std=c++14 -Ixlnt/include -lxlnt
 * ./tarea
