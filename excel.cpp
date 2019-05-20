@@ -2,7 +2,6 @@
 #include <vector>
 #include <string>
 #include <xlnt/xlnt.hpp>
-
 using namespace std;
 
 int contarFilas(xlnt::workbook);
@@ -11,15 +10,36 @@ vector<vector<string>> llenarVector(xlnt::workbook);
 void mostrarCursosProfes(vector<vector<string>>);
 
 
-int main()
+int main(int argc, char *argv[])
 {
     xlnt::workbook cursos;
     xlnt::workbook docentes;
     xlnt::workbook salas;
 
-    cursos.load("archivosExcel/Cursos.xlsx");
-    docentes.load("archivosExcel/Docentes.xlsx");
-    salas.load("archivosExcel/Salas.xlsx");
+    /*Primero, evaluamos los argumentos ingresados
+    cazando el prefijo "-c" para Cursos, "-d" para docentes
+    y "-s" para salas*/
+
+    /* Se avanzan dos espacios del arreglo de argumentos
+    para cazar los prefijos y se almacena en argumento*/
+
+    for (int j = 1; j < argc; j=j+2) {
+      char *argumento = argv[j];
+/*Dependiendo del argumento, cargamos el archivo correspondiente*/
+      if(argumento[1]=='c'){
+        cursos.load(argv[j+1]);
+      }
+
+      if(argumento[1]=='d'){
+        docentes.load(argv[j+1]);
+
+      }
+      if(argumento[1]=='s'){
+        salas.load(argv[j+1]);
+
+      }
+
+    }
 
     vector<vector<string>> vectorCursos;
     vectorCursos = llenarVector(cursos);
@@ -57,13 +77,6 @@ vector<vector<string>> llenarVector(xlnt::workbook cursos){
 
     return vectorHojaCompleta;
 }
-
-// void eliminarDatosRepetidos(vector<string> &vectorProfes){
-//     for(int i = 0; i < vectorProfes.size(); i++){
-
-//     }
-// }
-
 
 void mostrarCursosProfes(vector<vector<string>> vectorCursos){
     vector<string> vectorProfes;
