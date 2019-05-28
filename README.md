@@ -12,6 +12,5 @@ Tarea 5 ayudantia computacion paralela
 
 ### Compilación y ejecución:
 
-* g++ excel.cpp -o tarea -std=c++14 -Ixlnt/include -lxlnt
+* g++ excel.cpp -o tarea -std=c++14 -xlnt/include -lxlnt
 * ./tarea -c Cursos.xlsx -d Docentes.xlsx -s Salas.xlsx
-

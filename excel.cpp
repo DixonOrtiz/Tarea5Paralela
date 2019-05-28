@@ -8,7 +8,7 @@ int contarFilas(xlnt::workbook);
 vector<vector<string>> llenarVector(xlnt::workbook);
 // void eliminarDatosRepetidos(vector<string> &);
 void mostrarCursosProfes(vector<vector<string>>);
-
+void mostrarCursosProfes2(vector<vector<string>>, vector<vector<string>>);
 
 int main(int argc, char *argv[])
 {
@@ -42,8 +42,11 @@ int main(int argc, char *argv[])
     }
 
     vector<vector<string>> vectorCursos;
+    vector<vector<string>> vectorProfes;
     vectorCursos = llenarVector(cursos);
-    mostrarCursosProfes(vectorCursos);
+    vectorProfes = llenarVector(docentes);
+    mostrarCursosProfes2(vectorCursos, vectorProfes);
+    //mostrarCursosProfes(vectorCursos);
 
     cout << "El archivo cursos tiene " << contarFilas(cursos) << " filas. " << endl;
     cout << "El archivo docentes tiene " << contarFilas(docentes) << " filas. " << endl;
@@ -77,18 +80,33 @@ vector<vector<string>> llenarVector(xlnt::workbook cursos){
 
     return vectorHojaCompleta;
 }
+void mostrarCursosProfes2(vector<vector<string>> vectorCursos, vector<vector<string>> vectorProfes){
+
+    int contadorRamosPorProfe;
+    for(int i = 1; i < vectorProfes.size(); i++){
+        contadorRamosPorProfe = 0;
+        for(int j = 1; j < vectorCursos.size(); j++){
+            if(vectorProfes[i][0] == vectorCursos[j][2])
+                contadorRamosPorProfe++;
+        }
+
+        cout << "El/la profesor/a " << vectorProfes[i][1] << " "
+        << vectorCursos[i][2] << " tiene " << contadorRamosPorProfe << " ramos." << endl;
+    }
+}
 
 void mostrarCursosProfes(vector<vector<string>> vectorCursos){
     vector<string> vectorProfes;
 
     for(int i = 1; i < vectorCursos.size(); i++){
             vectorProfes.push_back(vectorCursos[i][2]);
-    }
 
+    }
     int contadorRamosPorProfe;
     for(int i = 1; i < vectorCursos.size(); i++){
         contadorRamosPorProfe = 0;
         for(int j = 0; j < vectorProfes.size(); j++){
+
             if(vectorProfes[j] == vectorCursos[i][2])
                 contadorRamosPorProfe++;
         }
